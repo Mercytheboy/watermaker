@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./watermark.css";
-import { saveAs } from "file-saver";
-import { Canvas } from "canvas";
+// import { saveAs } from "file-saver";
+// import { Canvas } from "canvas";
 
 function Watermark() {
   const [image, setImage] = useState(null);
@@ -42,7 +42,7 @@ function Watermark() {
         }, "image/jpeg");
       };
     }
-  };git 
+  };
 
   return (
     <div className="watrermark-container">
