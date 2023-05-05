@@ -28,7 +28,10 @@ function Watermark() {
         ctx.drawImage(img, 0, 0);
         ctx.font = "bold 4rem Arial";
         ctx.fillStyle = "rgba(0, 0, 0, 0.678)";
-        ctx.fillText(watermarkText, img.width / 2, img.height - 50);
+        ctx.textAlign = "center";
+        const x = canvas.width / 2;
+        const y = canvas.height - 50;
+        ctx.fillText(watermarkText, x, y);
         canvas.toBlob(blob => {
           const url = URL.createObjectURL(blob);
           const link = document.createElement("a");
@@ -39,7 +42,7 @@ function Watermark() {
         }, "image/jpeg");
       };
     }
-  };
+  };git 
 
   return (
     <div className="watrermark-container">
