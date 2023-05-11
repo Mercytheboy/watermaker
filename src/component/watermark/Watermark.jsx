@@ -34,54 +34,53 @@ function Watermark() {
     reader.readAsDataURL(file);
   };
 
-useEffect(() => {
-  if (watermarkType === "text") {
-    const canvas = document.createElement("canvas");
-    const img = new Image();
-    img.src = image;
-    img.onload = () => {
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(img, 0, 0);
-      ctx.font = "bold 4rem Arial";
-      ctx.fillStyle = "rgb(255, 255, 255)";
-      ctx.textAlign = "center";
-      const x = canvas.width / 2;
-      const y = canvas.height - 50;
-      ctx.fillText(watermarkText, x, y);
-      const watermarkedUrl = canvas.toDataURL();
-      setWatermarkedImage(watermarkedUrl);
-    };
-  } else {
-    const canvas = document.createElement("canvas");
-    const img = new Image();
-    const overlayImage = new Image();
-    img.src = image;
-    overlayImage.src = watermarkImage;
-    img.onload = () => {
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(img, 0, 0);
-      const overlayWidth = 100;
-      const overlayHeight =
-        (overlayWidth / overlayImage.width) * overlayImage.height;
-      const overlayX = (canvas.width - overlayWidth) / 2;
-      const overlayY = canvas.height - overlayHeight - 50;
-      ctx.drawImage(
-        overlayImage,
-        overlayX,
-        overlayY,
-        overlayWidth,
-        overlayHeight
-      );
-      const watermarkedUrl = canvas.toDataURL();
-      setWatermarkedImage(watermarkedUrl);
-    };
-  }
-}, [image, watermarkText, watermarkImage, watermarkType]);
-
+  useEffect(() => {
+    if (watermarkType === "text") {
+      const canvas = document.createElement("canvas");
+      const img = new Image();
+      img.src = image;
+      img.onload = () => {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        ctx.font = "bold 4rem Arial";
+        ctx.fillStyle = "rgb(255, 255, 255)";
+        ctx.textAlign = "center";
+        const x = canvas.width / 2;
+        const y = canvas.height - 0.1 * canvas.height;
+        ctx.fillText(watermarkText, x, y);
+        const watermarkedUrl = canvas.toDataURL();
+        setWatermarkedImage(watermarkedUrl);
+      };
+    } else {
+      const canvas = document.createElement("canvas");
+      const img = new Image();
+      const overlayImage = new Image();
+      img.src = image;
+      overlayImage.src = watermarkImage;
+      img.onload = () => {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        const overlayWidth = 0.2 * canvas.width;
+        const overlayHeight =
+          (overlayWidth / overlayImage.width) * overlayImage.height;
+        const overlayX = (canvas.width - overlayWidth) / 2;
+        const overlayY = canvas.height - overlayHeight - 50;
+        ctx.drawImage(
+          overlayImage,
+          overlayX,
+          overlayY,
+          overlayWidth,
+          overlayHeight
+        );
+        const watermarkedUrl = canvas.toDataURL();
+        setWatermarkedImage(watermarkedUrl);
+      };
+    }
+  }, [image, watermarkText, watermarkImage, watermarkType]);
 
   const handleDownload = () => {
     const link = document.createElement("a");
