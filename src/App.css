@@ -9,13 +9,16 @@
 }
 
 body {
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+  font-size: 0.8rem;
+}
+
+.app-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #E3BAC6;
-  padding: 3rem;
-  font-family: "Roboto", sans-serif;
-  font-weight: normal;
-  font-size: 1rem;
+  background: #e3bac6;
+  padding: 2rem;
 }
